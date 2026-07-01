@@ -1,0 +1,145 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.card {
+  display: block;
+  text-decoration: none;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.card:hover {
+  border-color: var(--amber);
+}
+
+.imageWrap {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.imageWrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.card:hover .imageWrap img {
+  transform: scale(1.03);
+}
+
+.tagPill {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  letter-spacing: 0.06em;
+  background: var(--amber);
+  color: #0D0D0D;
+  padding: 4px 12px;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.cardBody {
+  padding: 28px 32px 32px;
+}
+
+.cardTitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+  font-weight: 600;
+  color: var(--bone);
+  margin: 0 0 10px;
+  letter-spacing: -0.005em;
+  line-height: 1.25;
+}
+
+.cardDesc {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--bone-dim);
+  line-height: 1.6;
+  margin: 0 0 20px;
+}
+
+.viewLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  letter-spacing: 0.06em;
+  color: var(--amber);
+  text-decoration: none;
+}
+
+.viewArrow {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.card:hover .viewArrow {
+  transform: translateX(4px);
+}
+
+.noteBand {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 48px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.noteText {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--bone-dim);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.ghostBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--border);
+  padding: 12px 22px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  letter-spacing: 0.06em;
+  color: var(--bone);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.ghostBtn:hover {
+  border-color: var(--amber);
+  background: rgba(255, 122, 26, 0.06);
+}
+
+@media (max-width: 800px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .noteBand {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

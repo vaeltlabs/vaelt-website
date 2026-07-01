@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VAELT | Home</title>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700,900&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0D0D0D;
+    --bg-2:#161616;
+    --bg-3:#1E1E1E;
+    --bone:#EDE6DA;
+    --bone-dim:#9C9486;
+    --amber:#FF7A1A;
+    --amber-dim:#B85812;
+    --border:#2A2A2A;
+
+    --font-display:'Clash Display', sans-serif;
+    --font-body:'Satoshi', sans-serif;
+    --font-mono:'VT323', monospace;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ background:var(--bg); }
+  body{
+    background:var(--bg);
+    color:var(--bone);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{ background:var(--amber); color:var(--bg); }
+
+  .wrap{ max-width:1140px; margin:0 auto; padding:0 32px; }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 32px;
+    background:rgba(13,13,13,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .logo{ display:flex; align-items:center; gap:10px; font-family:var(--font-display); font-weight:700; font-size:1.1rem; letter-spacing:0.02em; color:var(--bone); }
+  .nav-links{ display:flex; gap:36px; font-family:var(--font-mono); font-size:14px; letter-spacing:0.04em; color:var(--bone-dim); }
+  .nav-links a{ color:inherit; text-decoration:none; }
+  .nav-links a.active{ color:var(--bone); }
+  .nav-cta{ font-family:var(--font-mono); font-size:14px; letter-spacing:0.04em; background:var(--amber); color:var(--bg); padding:8px 16px; border-radius:4px; text-decoration:none; }
+  @media (max-width:900px){ .nav-links{ display:none; } }
+
+  /* ---------- SHARED TYPE ---------- */
+  .eyebrow{ display:inline-block; font-family:var(--font-mono); font-size:18px; letter-spacing:0.08em; color:var(--amber); }
+  .section-h2{
+    font-family:var(--font-display); font-weight:600;
+    font-size:clamp(1.6rem,3.2vw,2.1rem);
+    letter-spacing:-0.005em; line-height:1.25;
+    max-width:480px; color:var(--bone);
+    margin-top:14px;
+  }
+  .section-p{ margin-top:16px; color:var(--bone-dim); font-size:0.98rem; line-height:1.6; max-width:440px; }
+  .ghost-btn{
+    display:inline-flex; align-items:center; gap:10px;
+    border:1px solid var(--border); padding:14px 22px; border-radius:4px;
+    font-family:var(--font-mono); font-size:15px; letter-spacing:0.06em;
+    color:var(--bone); text-decoration:none;
+    transition:border-color .2s ease, background .2s ease;
+  }
+  .ghost-btn:hover{ border-color:var(--amber); background:rgba(255,122,26,0.06); }
+  .primary-btn{
+    font-family:var(--font-body); font-weight:700; font-size:0.95rem;
+    background:var(--amber); color:var(--bg); padding:14px 28px; border-radius:8px;
+    text-decoration:none; display:inline-block; transition:background .2s ease;
+  }
+  .primary-btn:hover{ background:var(--amber-dim); }
+
+  /* ---------- HERO ---------- */
+  .hero{ min-height:88vh; display:flex; flex-direction:column; justify-content:center; padding:140px 0 60px; }
+  .hero .eyebrow{ margin-bottom:20px; }
+  .hero h1{
+    font-family:var(--font-display); font-weight:600;
+    font-size:clamp(2rem, 4.2vw, 3.1rem);
+    letter-spacing:-0.015em; line-height:1.15;
+    max-width:640px; color:var(--bone-dim);
+  }
+  .hero h1 .bright{ color:var(--bone); }
+  .hero p{ margin-top:22px; max-width:480px; font-size:1.02rem; line-height:1.6; color:var(--bone-dim); }
+  .hero-facts{ display:flex; gap:40px; flex-wrap:wrap; margin-top:64px; }
+  .hero-fact{ font-family:var(--font-mono); font-size:15px; letter-spacing:0.05em; color:var(--bone-dim); display:flex; align-items:center; gap:8px; }
+  .hero-fact svg{ flex-shrink:0; }
+  .hero-cta-row{ margin-top:40px; display:flex; gap:16px; flex-wrap:wrap; }
+
+  /* ---------- ABOUT ---------- */
+  .about{ border-top:1px solid var(--border); padding:120px 0; }
+  .about .about-copy{
+    font-family:var(--font-display); font-weight:500;
+    font-size:clamp(1.25rem,2.2vw,1.6rem);
+    color:var(--bone); max-width:680px; line-height:1.5;
+    margin:28px 0 32px;
+  }
+
+  /* ---------- SERVICES TEASER ---------- */
+  .services-teaser{ border-top:1px solid var(--border); padding:120px 0; }
+  .services-teaser-head{ margin-bottom:56px; }
+  .mini-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+  @media (max-width:900px){ .mini-grid{ grid-template-columns:1fr; } }
+  .mini-card{ background:var(--bg-2); padding:32px 28px; display:flex; flex-direction:column; justify-content:space-between; min-height:180px; text-decoration:none; transition:background .2s ease; }
+  .mini-card:hover{ background:var(--bg-3); }
+  .mini-tag{ font-family:var(--font-mono); font-size:14px; letter-spacing:0.06em; color:var(--amber); }
+  .mini-headline{ font-family:var(--font-display); font-weight:600; font-size:1.3rem; line-height:1.3; color:var(--bone); margin-top:28px; }
+  .mini-cta{ margin-top:20px; display:flex; align-items:center; gap:8px; font-family:var(--font-mono); font-size:13px; letter-spacing:0.05em; color:var(--bone-dim); transition:color .2s ease, gap .2s ease; }
+  .mini-card:hover .mini-cta{ color:var(--amber); gap:12px; }
+
+  /* ---------- PROCESS ---------- */
+  .process{ border-top:1px solid var(--border); padding:120px 0; }
+  .steps{ position:relative; display:grid; grid-template-columns:repeat(4,1fr); gap:32px; margin-top:64px; }
+  .steps::before{ content:''; position:absolute; top:22px; left:0; right:0; height:1px; background:var(--border); z-index:0; }
+  @media (max-width:900px){ .steps{ grid-template-columns:1fr 1fr; row-gap:56px; } .steps::before{ display:none; } }
+  @media (max-width:520px){ .steps{ grid-template-columns:1fr; } }
+  .step{ position:relative; z-index:1; }
+  .step-num{ width:44px; height:44px; border-radius:50%; background:var(--bg-2); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-size:16px; color:var(--amber); margin-bottom:24px; }
+  .step-title{ font-family:var(--font-display); font-weight:600; font-size:1.2rem; color:var(--bone); margin-bottom:10px; }
+  .step-desc{ font-size:0.92rem; line-height:1.55; color:var(--bone-dim); max-width:230px; }
+
+  /* ---------- BUILD RULES MARQUEE ---------- */
+  .marquee{ border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:28px 0; overflow:hidden; }
+  .marquee-track{ display:flex; white-space:nowrap; animation:scroll-left 30s linear infinite; }
+  .marquee-track span{ font-family:var(--font-display); font-weight:700; font-size:clamp(2rem,5vw,3.4rem); color:var(--bone-dim); opacity:0.35; padding:0 24px; }
+  .marquee-track .diamond{ width:12px; height:12px; background:var(--amber); display:inline-block; margin:auto 24px; opacity:0.7; align-self:center; }
+  @keyframes scroll-left{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce){ .marquee-track{ animation:none; } }
+
+  .rules{ padding:80px 0 120px; }
+  .rules-list{ max-width:640px; margin:0 auto; padding:0; list-style:none; font-family:var(--font-mono); font-size:17px; color:var(--bone-dim); line-height:2.1; }
+  .rules-list li{ display:flex; gap:14px; }
+  .rules-list .rule-num{ color:var(--bone); font-weight:700; flex-shrink:0; }
+
+  /* ---------- WORK TEASER ---------- */
+  .work-teaser{ border-top:1px solid var(--border); padding:120px 0; }
+  .work-row{ display:grid; grid-template-columns:60px 1fr 140px 32px; align-items:center; padding:26px 4px; border-bottom:1px solid var(--border); text-decoration:none; }
+  .work-row:first-of-type{ border-top:1px solid var(--border); }
+  .work-num{ font-family:var(--font-mono); color:var(--amber); font-size:15px; }
+  .work-title{ font-family:var(--font-display); font-weight:600; font-size:clamp(1.15rem,2.4vw,1.5rem); color:var(--bone); letter-spacing:-0.005em; }
+  .work-type{ font-family:var(--font-mono); font-size:12px; letter-spacing:0.05em; color:var(--bone-dim); text-align:right; }
+  .work-arrow{ color:var(--amber); justify-self:end; opacity:0.5; transition:opacity .2s ease, transform .2s ease; }
+  .work-row:hover .work-arrow{ opacity:1; transform:translateX(3px); }
+  @media (max-width:640px){ .work-row{ grid-template-columns:32px 1fr 24px; } .work-type{ display:none; } }
+
+  /* ---------- FAQ ---------- */
+  .faq{ background:var(--amber); padding:120px 0; border-top:1px solid var(--border); }
+  .faq-grid{ display:grid; grid-template-columns:1fr 1.3fr; gap:56px; }
+  @media (max-width:900px){ .faq-grid{ grid-template-columns:1fr; } }
+  .faq-h2{ font-family:var(--font-display); font-weight:700; font-size:clamp(1.9rem,4.5vw,2.8rem); letter-spacing:-0.01em; line-height:1.15; color:#0D0D0D; }
+  .faq-items{ display:grid; grid-template-columns:1fr 1fr; gap:40px 36px; }
+  @media (max-width:600px){ .faq-items{ grid-template-columns:1fr; } }
+  .faq-num{ display:inline-block; background:#0D0D0D; color:var(--amber); font-family:var(--font-mono); font-size:14px; padding:4px 10px; border-radius:4px; margin-bottom:12px; }
+  .faq-q{ font-family:var(--font-display); font-weight:700; font-size:1.15rem; color:#0D0D0D; margin-bottom:8px; }
+  .faq-a{ font-size:0.92rem; line-height:1.55; color:rgba(13,13,13,0.72); }
+
+  /* ---------- FINAL CTA ---------- */
+  .cta-final{ border-top:1px solid var(--border); padding:140px 0; text-align:center; }
+  .cta-final h2{ font-family:var(--font-display); font-weight:600; font-size:clamp(1.8rem,4vw,2.6rem); letter-spacing:-0.01em; line-height:1.2; color:var(--bone); max-width:560px; margin:0 auto 20px; }
+  .cta-final p{ color:var(--bone-dim); font-size:1rem; max-width:420px; margin:0 auto 40px; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ border-top:1px solid var(--border); padding:40px 0; }
+  footer .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+  footer .foot-mono{ font-family:var(--font-mono); font-size:14px; letter-spacing:0.05em; color:var(--bone-dim); }
+
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
+      <path d="M2 4L14 24L26 4" stroke="#FF7A1A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    VAELT
+  </div>
+  <div class="nav-links">
+    <a href="#" class="active">HOME</a>
+    <a href="#">SERVICES</a>
+    <a href="#">WORK</a>
+    <a href="#">ABOUT</a>
+  </div>
+  <a href="#" class="nav-cta">BOOK CALL →</a>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">[ VAELT ]</span>
+    <h1>Built to fix what's <span class="bright">actually broken</span>.</h1>
+    <p>Websites, booking systems, and automations, built fast and built right. No jargon, no waiting weeks for a reply.</p>
+
+    <div class="hero-facts">
+      <div class="hero-fact">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF7A1A" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+        SHIPS IN DAYS, NOT MONTHS
+      </div>
+      <div class="hero-fact">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF7A1A" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+        BUILT AROUND HOW YOU WORK
+      </div>
+      <div class="hero-fact">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF7A1A" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+        NO PRICING SURPRISES
+      </div>
+    </div>
+
+    <div class="hero-cta-row">
+      <a href="#" class="primary-btn">BOOK A FREE AUDIT CALL</a>
+      <a href="#" class="ghost-btn">SEE THE PROBLEMS WE FIX →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="about">
+  <div class="wrap">
+    <span class="eyebrow">[ ABOUT ]</span>
+    <p class="about-copy">VAELT builds the websites and systems businesses actually need, without the bloat of a typical agency process. Clear plans, fast builds, no jargon in the proposal.</p>
+    <a href="#" class="ghost-btn">MORE ON HOW THIS WORKS →</a>
+  </div>
+</section>
+
+<!-- ================= SERVICES TEASER ================= -->
+<section class="services-teaser">
+  <div class="wrap">
+    <div class="services-teaser-head">
+      <span class="eyebrow">[ WHAT'S BROKEN ]</span>
+      <h2 class="section-h2">Three places businesses usually lose money without noticing</h2>
+      <p class="section-p">Click through to see the exact fix for each.</p>
+    </div>
+
+    <div class="mini-grid">
+      <a href="#" class="mini-card">
+        <span class="mini-tag">01 / WEBSITE</span>
+        <div class="mini-headline">Your website is losing you customers</div>
+        <div class="mini-cta">SEE THE FIX
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </div>
+      </a>
+      <a href="#" class="mini-card">
+        <span class="mini-tag">02 / LEADS</span>
+        <div class="mini-headline">You're losing leads in your DMs</div>
+        <div class="mini-cta">SEE THE FIX
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </div>
+      </a>
+      <a href="#" class="mini-card">
+        <span class="mini-tag">03 / AUTOMATION</span>
+        <div class="mini-headline">You're the bottleneck in your own business</div>
+        <div class="mini-cta">SEE THE FIX
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROCESS (single source, replaces StepBand x3 + PhasePanel) ================= -->
+<section class="process">
+  <div class="wrap">
+    <span class="eyebrow">[ HOW IT WORKS ]</span>
+    <h2 class="section-h2">Built like software, not like a favor</h2>
+    <p class="section-p">Four steps. Same process no matter what you're having built.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title">Audit call</div>
+        <div class="step-desc">Thirty minutes. We find what's actually slowing the business down.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title">Plan & scope</div>
+        <div class="step-desc">A written plan lands in your inbox. What's being built and why.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title">Build</div>
+        <div class="step-desc">You see it come together, not just a reveal at the very end.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-title">Launch & handoff</div>
+        <div class="step-desc">It goes live and you learn to run it yourself.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BUILD RULES ================= -->
+<section>
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>BUILD RULES</span><span class="diamond"></span>
+      <span>BUILD RULES</span><span class="diamond"></span>
+      <span>BUILD RULES</span><span class="diamond"></span>
+      <span>BUILD RULES</span><span class="diamond"></span>
+      <span>BUILD RULES</span><span class="diamond"></span>
+      <span>BUILD RULES</span><span class="diamond"></span>
+    </div>
+  </div>
+
+  <div class="wrap rules">
+    <ol class="rules-list">
+      <li><span class="rule-num">01.</span> Ship in days, not months.</li>
+      <li><span class="rule-num">02.</span> Fix the most expensive problem first.</li>
+      <li><span class="rule-num">03.</span> One owner, start to finish. No ticket queue.</li>
+      <li><span class="rule-num">04.</span> Scope gets locked before the build starts.</li>
+      <li><span class="rule-num">05.</span> If it doesn't load fast, it doesn't ship.</li>
+      <li><span class="rule-num">06.</span> Nothing goes live untested on a real phone.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= WORK TEASER ================= -->
+<section class="work-teaser">
+  <div class="wrap">
+    <span class="eyebrow">[ SELECTED WORK ]</span>
+    <h2 class="section-h2">What this looks like in practice</h2>
+    <p class="section-p" style="margin-bottom:48px;">Live demo builds. Click through to see the actual site.</p>
+
+    <a href="https://ceylonedge-byaurax.vercel.app/" target="_blank" rel="noopener" class="work-row">
+      <span class="work-num">01</span>
+      <span class="work-title">Ceylon Edge Wallets (concept)</span>
+      <span class="work-type">E-COMMERCE</span>
+      <svg class="work-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <a href="https://lumorastudio-aurax.vercel.app/" target="_blank" rel="noopener" class="work-row">
+      <span class="work-num">02</span>
+      <span class="work-title">Lumora Studio (concept)</span>
+      <span class="work-type">WEBSITE</span>
+      <svg class="work-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <a href="https://butter-boutique-colombo.vercel.app/" target="_blank" rel="noopener" class="work-row">
+      <span class="work-num">03</span>
+      <span class="work-title">Butter Boutique</span>
+      <span class="work-type">WEBSITE</span>
+      <svg class="work-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <a href="https://pulseactive-website.vercel.app/" target="_blank" rel="noopener" class="work-row">
+      <span class="work-num">04</span>
+      <span class="work-title">Pulse Active</span>
+      <span class="work-type">E-COMMERCE</span>
+      <svg class="work-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="faq">
+  <div class="wrap">
+    <div class="faq-grid">
+      <div>
+        <h2 class="faq-h2">You've got<br>questions.<br>We've got<br>answers.</h2>
+      </div>
+      <div class="faq-items">
+        <div>
+          <span class="faq-num">001</span>
+          <div class="faq-q">What's this going to cost?</div>
+          <p class="faq-a">Depends what you actually need. A landing page is a different job than a full booking system. You'll know the number before the call ends.</p>
+        </div>
+        <div>
+          <span class="faq-num">002</span>
+          <div class="faq-q">How fast can this happen?</div>
+          <p class="faq-a">Most builds ship in days, not months. Bigger systems take a bit longer, and you'll know the timeline upfront.</p>
+        </div>
+        <div>
+          <span class="faq-num">003</span>
+          <div class="faq-q">Do you take small or one-off projects?</div>
+          <p class="faq-a">If it's worth doing properly, yes.</p>
+        </div>
+        <div>
+          <span class="faq-num">004</span>
+          <div class="faq-q">What makes this different from a normal agency?</div>
+          <p class="faq-a">No bloated process, no jargon-filled proposals. Just a clear plan and a fast build.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FINAL CTA ================= -->
+<section class="cta-final">
+  <div class="wrap">
+    <span class="eyebrow">[ START HERE ]</span>
+    <h2>Ready to see what's actually broken?</h2>
+    <p>Thirty minutes, zero pressure. You'll leave with a plan either way.</p>
+    <a href="#" class="primary-btn">BOOK A FREE AUDIT CALL</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-mono">VAELT · 2026</div>
+    <div class="foot-mono">hello@vaelt.xyz</div>
+    <div class="foot-mono">@vaeltlabs</div>
+    <div class="foot-mono">vaelt.xyz</div>
+  </div>
+</footer>
+
+</body>
+</html>
